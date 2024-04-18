@@ -17,6 +17,13 @@ main(int argc, char **argv)
     struct rfxcodec_encode_internals internals;
     int error;
     int index;
+
+    unsigned char in_buffer[4096];
+    short out_buffer1[4096];
+    short tmp_buffer1[4096];
+    //char quans[5] = { 0x66, 0x66, 0x66, 0x66, 0x66 };
+    char quans[5] = { 0x99, 0x99, 0x99, 0x99, 0x99 };
+#if 0
     short diff_buffer1[4096];
     short diff_buffer2[4096];
     short dwt_buffer[4096];
@@ -25,18 +32,12 @@ main(int argc, char **argv)
     int dwt_zeros1;
     int diff_zeros2;
     int dwt_zeros2;
-
-    unsigned char in_buffer[4096];
-    short out_buffer1[4096];
     short out_buffer2[4096];
-    short tmp_buffer1[4096];
     short tmp_buffer2[4096];
-    //char quans[5] = { 0x66, 0x66, 0x66, 0x66, 0x66 };
-    char quans[5] = { 0x99, 0x99, 0x99, 0x99, 0x99 };
     int fd;
 
     fd = open("/dev/urandom", O_RDONLY);
-
+#endif
     error = rfxcodec_encode_get_internals(&internals);
     if (error == 0)
     {
