@@ -94,6 +94,8 @@ typedef int (*rfx_encode_dwt_shift_rem_proc)(const unsigned char *in_buffer, sho
 typedef int (*rfx_encode_diff_count_sse2_proc)(short *diff_buffer, const short *dwt_buffer, const short *hist_buffer, int *diff_zeros, int *dwt_zeros);
 typedef int (*rfx_encode_dwt_shift_rem_sse2_proc)(const unsigned char *in_buffer, short *out_buffer, short *tmp_buffer, const char *quants);
 
+typedef int (*rfxencode_dwt_shift_arm64_neon_proc)(const char *qtable, const unsigned char *data, short *dwt_buffer1, short *dwt_buffer);
+
 struct rfxcodec_encode_internals
 {
     rfxencode_rlgr1_proc rfxencode_rlgr1;
@@ -111,6 +113,7 @@ struct rfxcodec_encode_internals
     rfx_encode_dwt_shift_rem_proc rfx_encode_dwt_shift_rem;
     rfx_encode_diff_count_sse2_proc rfx_encode_diff_count_sse2;
     rfx_encode_dwt_shift_rem_sse2_proc rfx_encode_dwt_shift_rem_sse2;
+    rfxencode_dwt_shift_arm64_neon_proc rfxencode_dwt_shift_amd64_neon;
 };
 
 int
